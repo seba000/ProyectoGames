@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.theme.css' %}">
+    <script src="{% static '/js/bootstrap.js' %}"></script>
+    <title>Mantenedor Productos</title>
+</head>
+<body id="todo">
+
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Mantenedor de Productos</h1>
+            
+            <div class="card">
+                
+                <img src="{% static '/img/gowfondo.jpg' %}" width="450px" alt="" class="card-img-top">
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <table>
+                            <tr>
+                                <td>Nombre: </td>
+                                <td>{{ form.descripcion }}</td>
+                            </tr>
+                            <tr>
+                                <td>Precio: </td>
+                                <td>{{ form.precio }}</td>
+                            </tr>
+                            <tr>
+                                <td>Plataforma: </td>
+                                <td>{{ form.marca }}</td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" value="Agregar"></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Lista de Productos</h1>
+    <table border="1" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Marca</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        {% for prod in productos %}
+            <tr>
+                <td>{{ prod.id }}</td>
+                <td>{{ prod.descripcion }}</td>
+                <td>{{ prod.precio }}</td>
+                <td>{{ prod.marca.marca }}</td>
+                <td>
+                   <a href="/edit/{{prod.id}}">Modificar</a> 
+                </td>
+                <td>
+                    <a href="/delete/{{prod.id}}">Eliminar</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    </div>
+    
+</body>
+</html>
