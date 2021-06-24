@@ -5,25 +5,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static '/css/bootstrap.theme.css' %}">
+    <link rel="stylesheet" href="{% static '/css/estilos.css' %}">
+    
     <script src="{% static '/js/bootstrap.js' %}"></script>
     <title>Mantenedor Productos</title>
 </head>
-<body id="todo">
-
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1>Mantenedor de Productos</h1>
-            
-            <div class="card">
+<body>
+    <header class="header" id="inicio">
+        <img class="hamburguer" src="{% static 'img/hamburguesa.svg' %}" alt="">
+        <nav class="menu-navegacion">
                 
-                <img src="{% static '/img/gowfondo.jpg' %}" width="450px" alt="" class="card-img-top">
-                <div class="card-body">
-                    <form action="" method="POST">
+                <a href="#mantenedor">mantenedor</a>
+                <a href="#listaPro">Productos</a>
+                <a href="#footer">Contacto</a>
+                <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+        </nav>
+        <div class="contenedor head">
+            <h1 class="titulo">Crea tu lista de Juegos</h1>
+            <p class="copy">Agrega los nombre los precios y elige la plataforma</p>
+        </div>
+        
+    </header>
+    <main>
+            
+            
+            <section class="gallery" id="PC">
+                <div class="contenedor"id="mantenedor">
+                
+                    <h1>Agregar juegos</h1>
+                    
+                
+                    <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
+                        
                         <table>
+                            
                             <tr>
                                 <td>Nombre: </td>
                                 <td>{{ form.descripcion }}</td>
@@ -36,33 +52,41 @@
                                 <td>Plataforma: </td>
                                 <td>{{ form.marca }}</td>
                             </tr>
+                            
                             <tr>
                                 <td><input type="submit" value="Agregar"></td>
                                 <td></td>
                             </tr>
+                        
                         </table>
+                    
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-    <h1>Lista de Productos</h1>
-    <table border="1" class="table">
+            </section>    
+
+            <section class="gallery" id="PC">
+                <div class="contenedor"id="listaPro">
+                <h1>Lista de Productos</h1>
+                
+                <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Marca</th>
+                
                 <th colspan="2">Acciones</th>
             </tr>
         </thead>
         {% for prod in productos %}
-            <tr>
+            
+        <tr>
                 <td>{{ prod.id }}</td>
                 <td>{{ prod.descripcion }}</td>
                 <td>{{ prod.precio }}</td>
                 <td>{{ prod.marca.marca }}</td>
+                
                 <td>
                    <a href="/edit/{{prod.id}}">Modificar</a> 
                 </td>
@@ -70,10 +94,37 @@
                     <a href="/delete/{{prod.id}}">Eliminar</a>
                 </td>
             </tr>
-
+        
         {% endfor %}
     </table>
-    </div>
-    
+
+</div>
+</section>
+    <footer id="footer">
+        <div class="contenedor footer-content">
+                <div class="contact-us">
+                    <h2 class="brand">DuocGamer</h2>
+                    <p>La mejor tienda de juegos en Chile</p>
+                </div>
+                <div class="social-media">
+                    <a href="*#footer" class="social-media-icon">
+                        <i class='bx bxl-facebook'></i>
+                    </a>
+                    <a href="*#footer" class="social-media-icon">
+                        <i class='bx bxl-twitter' ></i>
+                    </a>
+                    <a href="*#footer" class="social-media-icon">
+                        <i class='bx bxl-instagram' ></i>
+                    </a>
+                </div>
+        </div>
+        <div class="line"></div>
+    </footer>
+</main>
+<script src="{% static 'js/menu.js' %}"></script>  
+    <script src="{% static 'js/lightbox.js' %}"></script>
+    <script src="{% static 'js/monedas.js' %}"></script>
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/maps.js' %}"></script>
 </body>
 </html>

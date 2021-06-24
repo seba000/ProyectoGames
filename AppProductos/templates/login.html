@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/estiloLogin.css' %}">
+    
+    <script src="{% static '/js/bootstrap.js' %}"></script>
+    <title>Registro</title>
+</head>
+<body>
+    <div class="login">
+        <h1>Login</h1>
+                       <form action="" method="POST"> 
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <label for="username">
+                                    Usuario:
+                                </label>
+                                <input type="text" name="username" placeholder="USUARIO" class="form-control">
+                            </div>
+                            <div class="input-group">
+                                <label for="password1">
+                                    Password:
+                                </label>
+                                <input type="text" name="password" placeholder="CONTRASEÑA" class="form-control">
+                            </div> 
+                            <div class="input-group">
+                                <input type="submit" class="btn" value="Login">
+                            </div>
+                       </form>
+                       <p> si no posee cuenta <a href="{% url 'register' %}">Registro</a></p>
+                   </div>
+                   {% for msg in messages %}
+                        <p>{{msg}}</p>
+                   {% endfor %}
+                </div>
+</body>
+</html>

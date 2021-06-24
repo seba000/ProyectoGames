@@ -14,5 +14,7 @@ class Productos(models.Model):
     descripcion = models.CharField(max_length=500)
     precio= models.IntegerField(max_length=10)
     marca= models.ForeignKey(Marca,on_delete=models.CASCADE)
+    '''imagen = models.ImageField(upload_to="juegos", null=True)
+    '''
     class Meta:
         db_table: "producto"

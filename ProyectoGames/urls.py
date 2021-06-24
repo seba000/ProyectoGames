@@ -14,9 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from ProyectoGames.settings import MEDIA_ROOT
 from django.contrib import admin
+from django.conf import settings
+from django.contrib.auth import logout
 from django.urls import path
-
+from django.conf.urls.static import static
 from AppProductos import views
 urlpatterns = [
     path('admin/',admin.site.urls),
@@ -25,4 +28,11 @@ urlpatterns = [
     path('edit/<int:id_producto>',views.editar),
     path('update/<int:id_producto>',views.update),
     path('delete/<int:id_producto>',views.delete),
+
+    #urls para los usuarios
+    path('register/',views.registerPage,name='register'),
+    path('login/',views.loginPage,name='login'),
+    path('logout/',views.logoutUser,name='logout'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
